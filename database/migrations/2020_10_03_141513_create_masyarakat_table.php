@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblLaundryTable extends Migration
+class CreateMasyarakatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateTblLaundryTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_laundry', function (Blueprint $table) {
-            $table->id();
+        Schema::create('masyarakat', function (Blueprint $table) {
+            $table->integer('nik');
             $table->string('nama');
-            $table->string('jenis');
-            $table->integer('berat');
-            $table->integer('total');
-            $table->text('alamat');
+            $table->integer('telpn');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateTblLaundryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_laundry');
+        Schema::dropIfExists('masyarakat');
     }
 }
